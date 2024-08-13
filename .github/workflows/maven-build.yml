@@ -94,7 +94,7 @@ jobs:
         run: |
           echo "Verifying JAR file presence..."
           ls -al /home/project/spring-petclinic/target/
-          if [ -z "$(find /home/project/GITHUB/spring-petclinic/target/ -name 'spring-petclinic-3.3.0-SNAPSHOT.jar')" ]; then
+          if [ -z "$(find /home/project/spring-petclinic/target/ -name 'spring-petclinic-3.3.0-SNAPSHOT.jar')" ]; then
             echo "JAR file not found in target directory!"
             exit 1
           fi
