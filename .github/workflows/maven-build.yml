@@ -12,7 +12,6 @@ jobs:
   setup:
     runs-on: self-hosted
     steps:
-      # (Setup steps for Git, Docker, Docker Compose, Maven, etc.)
       - name: Validate Installation
         run: |
           echo "Validating installation..."
@@ -45,6 +44,13 @@ jobs:
           if [ -z "$(find /home/project/spring-petclinic/target/ -name 'spring-petclinic-3.3.0-SNAPSHOT.jar')" ]; then
             echo "JAR file not found in target directory!"
             exit 1
+          fi
+
+      - name: Free up port 8080
+        run: |
+          echo "Freeing up port 8080..."
+          if sudo lsof -i:8080; then
+            sudo lsof -t -i:8080 | xargs sudo kill -9
           fi
 
       - name: Add SSH host key
